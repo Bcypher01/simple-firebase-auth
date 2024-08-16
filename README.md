@@ -10,10 +10,7 @@ This project is a simple authentication system built with React and Next.js, uti
 - Styled with Tailwind CSS for a clean and modern look.
 
 ## Project Structure
-
-Copy code
-
-`root/
+root/
 │
 ├── src/
 │   ├── app/
@@ -42,7 +39,8 @@ Copy code
 ├── .gitignore
 ├── package.json
 ├── next.config.js
-└── README.md`
+└── README.md
+
 
 ### File and Directory Descriptions
 

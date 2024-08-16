@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Firebase Authentication Sign-In, Sign-Up, and Admin Page
+
+This project is a simple authentication system built with React and Next.js, utilizing Firebase for authentication. It provides user interfaces for signing in, signing up, and accessing an admin page.
+
+## Features
+
+- User authentication using Firebase.
+- Sign-in and sign-up forms with validation and error handling.
+- Admin page accessible after authentication.
+- Styled with Tailwind CSS for a clean and modern look.
+
+## Project Structure
+
+Copy code
+
+`root/
+│
+├── src/
+│   ├── app/
+│   │   ├── admin/
+│   │   │   └── page.js
+│   │   ├── signin/
+│   │   │   └── page.js
+│   │   ├── signup/
+│   │   │   └── page.js
+│   │   ├── loading.js
+│   │   └── page.js
+│   ├── context/
+│   │   └── AuthContext.js
+│   └── firebase/
+│       ├── auth/
+│       │   ├── signin.js
+│       │   └── signup.js
+│       └── config.js
+│
+├── public/
+│   └── favicon.ico
+│
+├── styles/
+│   └── global.css
+│
+├── .gitignore
+├── package.json
+├── next.config.js
+└── README.md`
+
+### File and Directory Descriptions
+
+- `src/app/admin/page.js`: Admin page accessible after successful authentication.
+- `src/app/signin/page.js`: Sign-in page for users.
+- `src/app/signup/page.js`: Sign-up page for new users.
+- `src/app/loading.js`: Loading component displayed during authentication processes.
+- `src/context/AuthContext.js`: Provides authentication context for the application.
+- `src/firebase/auth/signin.js`: Contains the logic for signing in a user.
+- `src/firebase/auth/signup.js`: Contains the logic for signing up a new user.
+- `src/firebase/config.js`: Firebase configuration file.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js installed on your machine.
+- Firebase project set up with Firestore and Authentication enabled.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1.  Clone the repository.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2.  Navigate to the project directory.
 
-## Learn More
+3.  Install dependencies.
 
-To learn more about Next.js, take a look at the following resources:
+### Configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  Configure your Firebase credentials in the appropriate environment file (e.g., `.env.local`):
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    `NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id`
 
-## Deploy on Vercel
+2.  Update Firebase initialization in `src/firebase/config.js`:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    `import firebase from "firebase/app";
+    import "firebase/auth";
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    const firebaseConfig = {
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+    };
+
+    if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+    }
+
+    export default firebase;`
+
+### Usage
+
+1.  Start the development server.
+
+2.  Open your browser and navigate to `http://localhost:3000` to view the sign-in, sign-up, and admin pages.
+
+### Deployment
+
+To deploy the project, follow the Next.js deployment guide for your target platform (e.g., Vercel, Netlify).
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and create a pull request with your changes.

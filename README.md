@@ -41,7 +41,6 @@ root/
 ├── next.config.js
 └── README.md
 
-
 ### File and Directory Descriptions
 
 - `src/app/admin/page.js`: Admin page accessible after successful authentication.
